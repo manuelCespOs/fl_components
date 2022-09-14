@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:fl_components/screens/screens.dart';
+
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -9,14 +11,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Material App',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Material App Bar'),
-        ),
-        body: const Center(
-          child: Text('Hello World'),
-        ),
-      ),
+      home: const CardScreen(),
+      initialRoute: 'home',
+      routes: {
+        'home': (context) => const HomeScreen(), 
+        'listview1': (context) => const ListView1Screen(),
+        'listview2': (context) => const ListView2Screen(),
+        'alert': (context) => const AlertScreen(),
+        'card': (context) => const CardScreen(),
+      },
+      onGenerateRoute: (settings) {
+        return MaterialPageRoute(
+          builder: (context) => const AlertScreen(),
+        );
+      },
     );
   }
 }
